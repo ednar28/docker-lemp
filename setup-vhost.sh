@@ -1,4 +1,4 @@
-c#!/bin/bash
+#!/bin/bash
 
 # Define the source template and target directory
 TEMPLATE="nginx/conf/example.conf.template"
@@ -28,5 +28,13 @@ for folder in "$WWW_DIR"/*; do
     sed -i "s|{{FOLDER}}|$folder_name/public|g" "$target_file"
     sed -i "s|{{DOMAIN}}|$folder_name.test|g" "$target_file"
     echo "Created configuration for $folder_name at $target_file"
+
+    # Check if the domain is already in /etc/hosts
+    if ! grep -q "127.0.0.1 $folder_name.test" /etc/hosts; then
+      echo "127.0.0.1 $folder_name.test" | sudo tee -a /etc/hosts > /dev/null
+      echo "Added $folder_name.test to /etc/hosts"
+    else
+      echo "$folder_name.test is already in /etc/hosts"
+    fi
   fi
 done
