@@ -1,5 +1,6 @@
 nginx/conf/*
 !nginx/conf/default.conf
+!nginx/conf/example.conf.template
 nginx/devcerts/*
 !nginx/devcerts/.gitkeep
 nginx/logs/*
