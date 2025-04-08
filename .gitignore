@@ -1,0 +1,9 @@
+nginx/conf/*
+!nginx/conf/default.conf
+nginx/devcerts/*
+!nginx/devcerts/.gitkeep
+nginx/logs/*
+!nginx/logs/.gitkeep
+
+www/*
+!www/index.php
