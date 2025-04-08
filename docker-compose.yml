@@ -9,7 +9,20 @@ services:
       - ./www:/var/www/html
     networks:
       - app-network
-
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    ports:
+      - "11211:11211"
+    networks:
+      - app-network
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -36,7 +49,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
     networks:
       - app-network
 
@@ -55,7 +68,7 @@ services:
       - app-network
 
 volumes:
-  mysql_data:
+  mysql-data:
 
 networks:
   app-network:

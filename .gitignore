@@ -6,5 +6,8 @@ nginx/devcerts/*
 nginx/logs/*
 !nginx/logs/.gitkeep
 
+mysql-data/*
+!mysql-data/.gitkeep
+
 www/*
 !www/index.php
