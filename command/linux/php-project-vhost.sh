@@ -3,7 +3,7 @@
 # Define the source template and target directory
 TEMPLATE="nginx/conf/example.conf.template"
 TARGET_DIR="nginx/conf"
-WWW_DIR="www"
+WWW_DIR="php-project"
 
 # Check if the www directory exists
 if [ ! -d "$WWW_DIR" ]; then

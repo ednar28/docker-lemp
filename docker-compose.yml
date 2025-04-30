@@ -6,9 +6,10 @@ services:
       dockerfile: Dockerfile
     container_name: php
     volumes:
-      - ./www:/var/www/html
+      - ./php-project:/var/www/html
     networks:
       - app-network
+
   redis:
     image: redis:latest
     container_name: redis
@@ -23,6 +24,7 @@ services:
       - "11211:11211"
     networks:
       - app-network
+
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -30,7 +32,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./www:/var/www/html
+      - ./php-project:/var/www/html
       - ./nginx/conf:/etc/nginx/conf.d
       - "./nginx/devcerts:/etc/nginx/certs"
     depends_on:
@@ -40,16 +42,17 @@ services:
 
   mysql:
     image: mysql:8.0
+    restart: always
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root-password
       MYSQL_DATABASE: mysql-db
-      MYSQL_USER: mysql-user
-      MYSQL_PASSWORD: mysql-password
+      MYSQL_ROOT_PASSWORD: root-password
     ports:
       - "3306:3306"
+    command: --sql-mode=''
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql:rw
+    user: mysql
     networks:
       - app-network
 

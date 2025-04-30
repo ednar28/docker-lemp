@@ -18,16 +18,13 @@ mkcert -install
 
 # Generate certificates for localhost '*.test' domains
 domains="localhost"
-for folder in www/*; do
+for folder in php-project/*; do
   if [ -d "$folder" ]; then
     folder_name=$(basename "$folder")
-    domains="$domains $folder_name.test"
+    mkcert -key-file nginx/devcerts/$folder_name-key.pem -cert-file nginx/devcerts/$folder_name-cert.pem "$folder_name.test"
+    echo "Certificates generated: key.pem and cert.pem"
   fi
 done
-
-mkcert -key-file nginx/devcerts/key.pem -cert-file nginx/devcerts/cert.pem $domains
-
-echo "Certificates generated: key.pem and cert.pem"
 
 # Update CA certificates
 sudo update-ca-certificates

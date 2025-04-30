@@ -9,5 +9,7 @@ nginx/logs/*
 mysql-data/*
 !mysql-data/.gitkeep
 
-www/*
-!www/index.php
+php-project/*
+vue-project/*
+!php-project/index.php
+!vue-project/.gitkeep

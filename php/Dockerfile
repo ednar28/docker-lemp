@@ -10,14 +10,17 @@ WORKDIR /var/www/html
 RUN apt-get update && apt-get install -y \
   git \
   unzip \
+  ldap-utils \
+  zlib1g-dev \
   libpng-dev \
   libldap2-dev \
   libsodium-dev \
   libonig-dev \
   libxml2-dev \
+  libzip-dev \
   zip \
   curl \
-  && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+  && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip sodium ldap
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
