@@ -22,6 +22,6 @@ server {
   }
 
   listen 443 ssl;
-  ssl_certificate /etc/nginx/certs/cert.pem;
-  ssl_certificate_key /etc/nginx/certs/key.pem;
+  ssl_certificate /etc/nginx/certs/{{CERT}};
+  ssl_certificate_key /etc/nginx/certs/{{KEY}};
 }

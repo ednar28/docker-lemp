@@ -27,6 +27,8 @@ for folder in "$WWW_DIR"/*; do
     cp "$TEMPLATE" "$target_file"
     sed -i "s|{{FOLDER}}|$folder_name/public|g" "$target_file"
     sed -i "s|{{DOMAIN}}|$folder_name.test|g" "$target_file"
+    sed -i "s|{{CERT}}|$folder_name-cert.pem|g" "$target_file"
+    sed -i "s|{{KEY}}|$folder_name-key.pem|g" "$target_file"
     echo "Created configuration for $folder_name at $target_file"
 
     # Check if the domain is already in /etc/hosts
