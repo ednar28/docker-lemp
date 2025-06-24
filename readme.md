@@ -1,39 +1,36 @@
-# PHP Project
+# Proyek PHP
 
-## Description
-This is a simple PHP project running on a LEMP stack using Docker.
+## Deskripsi
+Ini adalah proyek PHP sederhana yang berjalan di atas stack LEMP menggunakan Docker.
 
-## Instructions
-1. Ensure you have Docker and Docker Compose installed on your system.
-2. Clone this repository to your local machine.
-3. Navigate to the php-project directory.
-4. Build and start the Docker containers:
+## Petunjuk
+1. Pastikan Anda telah menginstal Docker dan Docker Compose di sistem Anda.
+2. Clone repositori ini ke komputer Anda.
+3. Bangun dan jalankan kontainer Docker:
     ```bash
     docker-compose up -d
     ```
-5. Run the setup script:
+4. Jalankan skrip pengaturan:
     ```bash
     ./run.sh
     ```
-6. Access the project via your browser at `https://localhost` or `https://folder_name.test`.
+5. Akses proyek melalui browser Anda di `https://localhost` atau `https://folder_name.test`.
 
-## Notes
-- The `php-project` folder will automatically register example domains in the format `folder_name.test` for local development.
-- The `run.sh` script is used to register local domains and set up HTTPS support using `mkcert`. Ensure `mkcert` is installed and trusted on your system before running the script.
-- The Docker Compose file includes services for Nginx, MySQL, PHPMYADMIN, and PHP.
-- Customize the `docker-compose.yml` and `php.ini` files as needed.
-- Follow best practices for PHP development.
+## Catatan
+- Folder `php-project` akan secara otomatis mendaftarkan domain contoh dalam format `folder_name.test` untuk pengembangan lokal.
+- Skrip `run.sh` digunakan untuk mendaftarkan domain lokal dan mengatur dukungan HTTPS menggunakan `mkcert`. Pastikan `mkcert` telah diinstal dan dipercaya di sistem Anda sebelum menjalankan skrip. Jika `mkcert` belum tersedia di sistem Anda, skrip akan secara otomatis menginstal `mkcert` menggunakan package manager yang sesuai dengan sistem operasi Anda.
+- File Docker Compose mencakup layanan untuk Nginx, MySQL, PHPMYADMIN, dan PHP.
 
-## Supported Platforms
+## Platform yang Didukung
 - [x] Linux
 - [ ] Windows
 - [ ] macOS
 
-## Future Development
-- Support for multiple PHP versions to allow testing and running different PHP-based applications.
-- Enhanced Nginx configuration to support frameworks and CMS beyond Laravel, such as WordPress and other PHP-based platforms.
-- Improved flexibility in the `docker-compose.yml` file to enable easier customization for various project requirements.
-- Additional documentation for setting up and configuring multiple PHP versions and Nginx configurations.
-- Potential integration with tools like Xdebug for debugging across different PHP versions.
-- Streamlined process for adding new domains and SSL certificates for additional projects.
-- Testing and support for Windows and macOS platforms.
+## Pengembangan Masa Depan
+- Dukungan untuk beberapa versi PHP untuk memungkinkan pengujian dan menjalankan aplikasi berbasis PHP yang berbeda.
+- Konfigurasi Nginx yang ditingkatkan untuk mendukung framework dan CMS selain Laravel, seperti WordPress dan platform berbasis PHP lainnya.
+- Peningkatan fleksibilitas dalam file `docker-compose.yml` untuk memungkinkan penyesuaian yang lebih mudah untuk berbagai kebutuhan proyek.
+- Dokumentasi tambahan untuk mengatur dan mengkonfigurasi beberapa versi PHP dan konfigurasi Nginx.
+- Potensi integrasi dengan alat seperti Xdebug untuk debugging di berbagai versi PHP.
+- Proses yang disederhanakan untuk menambahkan domain baru dan sertifikat SSL untuk proyek tambahan.
+- Pengujian dan dukungan untuk platform Windows dan macOS.

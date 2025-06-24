@@ -1,10 +1,10 @@
 version: "3.8"
 services:
-  php:
+  php83:
     build:
       context: ./php
-      dockerfile: Dockerfile
-    container_name: php
+      dockerfile: php83
+    container_name: php83
     volumes:
       - ./php-project:/var/www/html
     networks:
@@ -36,7 +36,7 @@ services:
       - ./nginx/conf:/etc/nginx/conf.d
       - "./nginx/devcerts:/etc/nginx/certs"
     depends_on:
-      - php
+      - php83
     networks:
       - app-network
 
