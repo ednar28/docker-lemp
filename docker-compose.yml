@@ -55,7 +55,7 @@ services:
       - "3306:3306"
     command: --sql-mode=''
     volumes:
-      - ./mysql-data:/var/lib/mysql:rw
+      - ./mysql-storage:/var/lib/mysql:rw
     user: mysql
     networks:
       - app-network

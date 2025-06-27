@@ -6,8 +6,8 @@ nginx/devcerts/*
 nginx/logs/*
 !nginx/logs/.gitkeep
 
-mysql-data/*
-!mysql-data/.gitkeep
+mysql-storage/*
+!mysql-storage/.gitkeep
 
 php-project/*
 vue-project/*
