@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Run php-vhost.sh
-"$(dirname "$0")/php-vhost.sh"
+SCRIPTS=(
+  "php-vhost.sh"
+  "vue-vhost.sh"
+)
 
-# Run vue-vhost.sh
-"$(dirname "$0")/vue-vhost.sh"
+SCRIPT_DIR="$(dirname "$0")"
+
+for script in "${SCRIPTS[@]}"; do
+  "$SCRIPT_DIR/$script"
+done
