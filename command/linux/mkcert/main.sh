@@ -13,20 +13,9 @@ if ! command -v mkcert &> /dev/null; then
   sudo mv mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 fi
 
-# Create a local CA if not already created
-mkcert -install
-
-domain="localhost"
-mkcert -key-file nginx/devcerts/localhost-key.pem -cert-file nginx/devcerts/localhost-cert.pem $domain
-
-# Generate certificates for localhost '*.test' domains
-for folder in php-project/*; do
-  if [ -d "$folder" ]; then
-    folder_name=$(basename "$folder")
-    mkcert -key-file nginx/devcerts/$folder_name-key.pem -cert-file nginx/devcerts/$folder_name-cert.pem "$folder_name.test"
-    echo "Certificates generated: key.pem and cert.pem"
-  fi
-done
+# generate mkcert certificates for PHP and Vue projects
+bash "$(dirname "$0")/php-mkcert.sh"
+bash "$(dirname "$0")/vue-mkcert.sh"
 
 # Update CA certificates
 sudo update-ca-certificates

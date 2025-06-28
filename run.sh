@@ -18,13 +18,17 @@ if [ ! -d "$COMMAND_DIR" ]; then
   exit 1
 fi
 
-# Iterate over all .sh files in the command directory
-for file in "$COMMAND_DIR"/*.sh; do
-  # Check if the file exists and is executable
-  if [ -f "$file" ] && [ -x "$file" ]; then
-    echo "Running $file..."
-    "$file"
+TARGETS=(
+  "$COMMAND_DIR/vhost/main.sh"
+  "$COMMAND_DIR/mkcert/main.sh"
+)
+
+for TARGET in "${TARGETS[@]}"; do
+  if [ -f "$TARGET" ] && [ -x "$TARGET" ]; then
+    echo "Running $TARGET"
+    bash "$TARGET"
   else
-    echo "Skipping $file (not executable or not a regular file)."
+    echo "File $TARGET does not exist or is not executable."
+    exit 1
   fi
 done

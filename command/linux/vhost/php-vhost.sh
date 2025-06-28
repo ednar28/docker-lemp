@@ -32,7 +32,7 @@ for folder in "$WWW_DIR"/*; do
     echo "Created configuration for $folder_name at $target_file"
 
     # Check if the domain is already in /etc/hosts
-    if ! grep -q "127.0.0.1 $folder_name.test" /etc/hosts; then
+    if ! grep -qE "^127\.0\.0\.1[[:space:]]+$folder_name\.test([[:space:]]|$)" /etc/hosts; then
       echo "127.0.0.1 $folder_name.test" | sudo tee -a /etc/hosts > /dev/null
       echo "Added $folder_name.test to /etc/hosts"
     else

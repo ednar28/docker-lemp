@@ -38,7 +38,8 @@ services:
     volumes:
       - ./php-project:/var/www/html
       - ./nginx/conf:/etc/nginx/conf.d
-      - "./nginx/devcerts:/etc/nginx/certs"
+      - "./nginx/devcerts/php:/etc/nginx/certs/php"
+      - "./nginx/devcerts/vue:/etc/nginx/certs/vue"
     depends_on:
       - php83
     networks:

@@ -31,8 +31,8 @@ server {
   }
 
   listen 443 ssl http2;
-  ssl_certificate /etc/nginx/certs/{{CERT}};
-  ssl_certificate_key /etc/nginx/certs/{{KEY}};
+  ssl_certificate /etc/nginx/certs/php/{{CERT}};
+  ssl_certificate_key /etc/nginx/certs/php/{{KEY}};
 
   # SSL configuration
   # ssl_protocols TLSv1.2 TLSv1.3;
