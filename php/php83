@@ -1,34 +1,50 @@
-# Use the official PHP 8.3 FPM image as the base image
 FROM php:8.3-fpm
 
+# Install system dependencies & PHP extensions
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    curl \
+    zip \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libxml2-dev \
+    libonig-dev \
+    libssl-dev \
+    libicu-dev \
+    libsodium-dev \
+    libldap2-dev \
+    && docker-php-ext-configure gd --with-jpeg --with-freetype \
+    && docker-php-ext-install \
+        pdo \
+        pdo_mysql \
+        bcmath \
+        mbstring \
+        exif \
+        pcntl \
+        curl \
+        zip \
+        soap \
+        intl \
+        xml \
+        gd \
+        sodium \
+        ldap
+
+# Install Redis
 RUN pecl install redis && docker-php-ext-enable redis
+
+# Copy Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-  git \
-  unzip \
-  ldap-utils \
-  zlib1g-dev \
-  libpng-dev \
-  libldap2-dev \
-  libsodium-dev \
-  libonig-dev \
-  libxml2-dev \
-  libzip-dev \
-  zip \
-  curl \
-  && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip sodium ldap
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set permissions for Laravel
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html \
-  && chmod -R 755 /var/www/html
+    && chmod -R 755 /var/www/html
 
-# Expose port 9000 and start PHP-FPM server
 EXPOSE 9000
 CMD ["php-fpm"]
