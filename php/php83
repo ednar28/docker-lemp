@@ -41,7 +41,9 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install redis && docker-php-ext-enable redis
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php --install-dir=/usr/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
 
 # Set working directory
 WORKDIR /var/www/html
