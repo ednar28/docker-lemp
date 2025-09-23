@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Bash script for Vue mkcert certificate generation (Windows compatible)
+
+# Use mkcert or mkcert.exe depending on what's available
+MKCERT_CMD="mkcert"
+if command -v mkcert.exe &> /dev/null; then
+  MKCERT_CMD="mkcert.exe"
+fi
+
+# Create a local CA if not already created
+echo "Installing mkcert CA..."
+$MKCERT_CMD -install
+
+# Generate certificate for localhost
+domain="localhost"
+echo "Generating certificate for $domain..."
+
+# Create directories if they don't exist (Windows path compatible)
+vue_cert_dir="nginx/devcerts/vue"
+mkdir -p "$vue_cert_dir"
+
+$MKCERT_CMD -key-file "$vue_cert_dir/localhost-key.pem" -cert-file "$vue_cert_dir/localhost-cert.pem" $domain
+
+# Generate certificates for '*.test' domains based on vue-project folders
+vue_project_dir="vue-project"
+if [ -d "$vue_project_dir" ]; then
+    for folder in "$vue_project_dir"/*; do
+        if [ -d "$folder" ]; then
+            folder_name=$(basename "$folder")
+            test_domain="$folder_name.test"
+            
+            echo "Generating certificate for $test_domain..."
+            $MKCERT_CMD -key-file "$vue_cert_dir/$folder_name-key.pem" -cert-file "$vue_cert_dir/$folder_name-cert.pem" "$test_domain"
+            echo "Certificates generated: $folder_name-key.pem and $folder_name-cert.pem"
+        fi
+    done
+else
+    echo "vue-project directory not found, skipping project-specific certificates"
+fi
