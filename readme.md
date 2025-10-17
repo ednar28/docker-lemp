@@ -37,5 +37,5 @@ Ini adalah proyek PHP sederhana yang berjalan di atas stack LEMP menggunakan Doc
 - Konfigurasi Nginx yang ditingkatkan untuk mendukung framework lain selain laravel.
 - Peningkatan fleksibilitas dalam file `docker-compose.yml` untuk memungkinkan penyesuaian yang lebih mudah untuk berbagai kebutuhan proyek.
 - Integrasi dengan alat seperti Xdebug untuk debugging di berbagai versi PHP.
-- Proses yang disederhanakan untuk menambahkan domain baru dan sertifikat SSL untuk proyek tambahan.
+- Penambahan domain baru dan sertifikat SSL untuk proyek tambahan yang lebih sederhana.
 - Pengujian dan dukungan untuk platform macOS.
