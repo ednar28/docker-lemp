@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-# Install system dependencies & PHP extensions
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -19,23 +19,27 @@ RUN apt-get update && apt-get install -y \
     ldap-utils \
     libxslt-dev \
     libcurl4-openssl-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install \
-        pdo \
-        pdo_mysql \
-        bcmath \
-        mbstring \
-        exif \
-        pcntl \
-        curl \
-        zip \
-        soap \
-        intl \
-        xml \
-        gd \
-        sodium \
-        ldap \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Configure and install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-source extract
+
+# Install core PHP extensions (installed but not auto-enabled)
+RUN docker-php-ext-install pdo \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install bcmath \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install exif \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-install curl \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install soap \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install xml \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install sodium \
+    && docker-php-ext-install ldap
 
 # Install Redis
 RUN pecl install redis && docker-php-ext-enable redis
