@@ -12,11 +12,12 @@ Ini adalah proyek PHP sederhana yang berjalan di atas stack LEMP menggunakan Doc
    ```bash
    docker-compose up -d
    ```
-4. Jalankan skrip pengaturan:
+4. Masukkan project php anda ke folder `php-project`.
+5. Jalankan skrip pengaturan:
    ```bash
    ./run.sh
    ```
-5. Akses proyek melalui browser Anda di `https://localhost` atau `https://folder_name.test`.
+6. Akses proyek melalui browser Anda di `https://localhost` atau `https://folder_name.test`.
 
 ## Catatan
 
@@ -30,12 +31,11 @@ Ini adalah proyek PHP sederhana yang berjalan di atas stack LEMP menggunakan Doc
 - [x] Windows
 - [ ] macOS
 
-## Pengembangan Masa Depan
+## Pengembangan Selanjutnya
 
-- Dukungan untuk beberapa versi PHP untuk memungkinkan pengujian dan menjalankan aplikasi berbasis PHP yang berbeda.
-- Konfigurasi Nginx yang ditingkatkan untuk mendukung framework dan CMS selain Laravel, seperti WordPress dan platform berbasis PHP lainnya.
+- Dukungan beberapa versi php
+- Konfigurasi Nginx yang ditingkatkan untuk mendukung framework lain selain laravel.
 - Peningkatan fleksibilitas dalam file `docker-compose.yml` untuk memungkinkan penyesuaian yang lebih mudah untuk berbagai kebutuhan proyek.
-- Dokumentasi tambahan untuk mengatur dan mengkonfigurasi beberapa versi PHP dan konfigurasi Nginx.
-- Potensi integrasi dengan alat seperti Xdebug untuk debugging di berbagai versi PHP.
+- Integrasi dengan alat seperti Xdebug untuk debugging di berbagai versi PHP.
 - Proses yang disederhanakan untuk menambahkan domain baru dan sertifikat SSL untuk proyek tambahan.
-- Pengujian dan dukungan untuk platform Windows dan macOS.
+- Pengujian dan dukungan untuk platform macOS.
