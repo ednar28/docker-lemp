@@ -1,8 +1,4 @@
-# Proyek PHP
-
-## Deskripsi
-
-Ini adalah proyek PHP sederhana yang berjalan di atas stack LEMP menggunakan Docker.
+# Docker Lemp
 
 ## Petunjuk
 
