@@ -6,7 +6,7 @@
 2. Clone repositori ini ke komputer Anda.
 3. Bangun dan jalankan kontainer Docker:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 4. Masukkan project php anda ke folder `php-project`.
 5. Jalankan skrip pengaturan:
