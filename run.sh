@@ -4,7 +4,7 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   COMMAND_DIR="./command/linux"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  COMMAND_DIR="./command/macos"
+  COMMAND_DIR="./command/mac"
 elif [[ "$OSTYPE" == "msys"* || "$OSTYPE" == "cygwin"* ]]; then
   COMMAND_DIR="./command/windows"
 else
@@ -24,11 +24,30 @@ TARGETS=(
 )
 
 for TARGET in "${TARGETS[@]}"; do
-  if [ -f "$TARGET" ] && [ -x "$TARGET" ]; then
+  # If the target file exists, ensure it's executable and run it
+  if [ -f "$TARGET" ]; then
+    if [ ! -x "$TARGET" ]; then
+      echo "Note: $TARGET is not executable; attempting to make it executable."
+      chmod +x "$TARGET" 2>/dev/null || true
+    fi
     echo "Running $TARGET"
     bash "$TARGET"
-  else
-    echo "File $TARGET does not exist or is not executable."
-    exit 1
+    continue
   fi
+
+  # If target missing, try to copy counterpart from the linux commands folder (if available)
+  LINUX_DIR="./command/linux"
+  COUNTERPART="${TARGET/$COMMAND_DIR/$LINUX_DIR}"
+  if [ -f "$COUNTERPART" ]; then
+    echo "Target $TARGET missing — copying counterpart from $COUNTERPART"
+    mkdir -p "$(dirname "$TARGET")"
+    cp "$COUNTERPART" "$TARGET"
+    chmod +x "$TARGET" 2>/dev/null || true
+    echo "Running $TARGET"
+    bash "$TARGET"
+    continue
+  fi
+
+  echo "File $TARGET does not exist. Tried counterpart: $COUNTERPART"
+  exit 1
 done
