@@ -25,9 +25,12 @@ server {
     include fastcgi_params;
     fastcgi_read_timeout 300;
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param PATH_INFO $fastcgi_path_info;
     fastcgi_intercept_errors off;
     fastcgi_buffer_size 16k;
     fastcgi_buffers 4 16k;
+    fastcgi_param HTTP_HOST $host;
+    fastcgi_param SERVER_NAME $host;
   }
 
   listen 443 ssl http2;
