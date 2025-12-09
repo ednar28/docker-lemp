@@ -25,7 +25,7 @@
 
 - [x] Linux
 - [x] Windows
-- [ ] macOS
+- [x] macOS
 
 ## Pengembangan Selanjutnya
 
