@@ -21,6 +21,38 @@
 - Skrip `run.sh` digunakan untuk mendaftarkan domain lokal dan mengatur dukungan HTTPS menggunakan `mkcert`. Pastikan `mkcert` telah diinstal dan dipercaya di sistem Anda sebelum menjalankan skrip. Jika `mkcert` belum tersedia di sistem Anda, skrip akan secara otomatis menginstal `mkcert` menggunakan package manager yang sesuai dengan sistem operasi Anda.
 - File Docker Compose mencakup layanan untuk Nginx, MySQL, PHPMYADMIN, dan PHP.
 
+## Struktur Project
+
+```
+.
+├── command/
+│   ├── linux/          # Script untuk platform Linux
+│   ├── mac/            # Script untuk platform macOS
+│   └── windows/        # Script untuk platform Windows
+├── mysql-storage/      # Data persistence untuk MySQL
+├── nginx/
+│   ├── conf/           # Konfigurasi Nginx
+│   ├── devcerts/       # Sertifikat SSL untuk development
+│   └── logs/           # Log Nginx
+├── php-project/        # Folder untuk project PHP
+│   └── koperasi/       # Contoh project PHP
+├── php/
+│   ├── php.ini         # Konfigurasi PHP
+│   └── php83           # Dockerfile PHP 8.3
+├── vue-project/        # Folder untuk project Vue.js
+├── docker-compose.yml  # Konfigurasi Docker Compose
+├── run.sh              # Script setup dan konfigurasi
+└── README.md           # Dokumentasi project
+```
+
+## phpMyAdmin
+
+phpMyAdmin tersedia di `http://localhost:8081`
+
+**Kredensial:**
+- **Username:** `root`
+- **Password:** `root-password`
+
 ## Platform yang Didukung
 
 - [x] Linux
